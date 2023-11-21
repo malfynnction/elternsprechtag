@@ -1,16 +1,26 @@
 # Elternsprechtag
 
-> "Elternsprechtag" [ˈɛltɐnˌʃpʁɛçtaːk] German noun: parents' day, parent–teacher conference, parent–teacher interview, parent–teacher night, or parent teacher meeting.
+> "Elternsprechtag" [ˈɛltɐnˌʃpʁɛçtaːk], German noun: parents' day, parent–teacher conference, parent–teacher interview, parent–teacher night, or parent teacher meeting.
 
 ## What does this do
 This script helps schedule appointments based on peoples' availabilities.
 
-It maximizes the amount of appointments using the [Hopcroft–Karp algorithm](https://en.wikipedia.org/wiki/Hopcroft%E2%80%93Karp_algorithm).
+It maximizes the amount of appointments using the [Hopcroft–Karp algorithm](https://en.wikipedia.org/wiki/Hopcroft%E2%80%93Karp_algorithm), based on [this implementation](https://github.com/Tom-Alexander/hopcroft-karp).
 
 It can for example be used for a parent-teacher conference, to schedule meetings with as many parents as possible.
 
 ## How to set up
-The code is intended to run on Apps Script within GoogleSheets.
+The code is intended to run on Apps Script within GoogleSheets, with Google Forms used for data collection.
+
+### Google Forms
+The use of Google Forms is optional, the script also works with manual data entry. If you want to skip Google Forms, you can find instructions below on how to set up your Google Sheet.
+
+If you choose to use a Google Form, set one up with only two questions: One for identification and one with a list of checkboxes for all available times.<br>
+(Note: For data protection reasons, I recommend using random pseudonymized codes instead of real names for identification.)
+
+![image](https://github.com/malfynnction/elternsprechtag/assets/24372341/a6e1daf3-2c57-45f0-b24b-32f2747ec3bc)
+
+Then head to the "Responses" Tab and link it to Google Sheets. It will create a GoogleSheet with a "Form responses 1" tab for you, so you will only need to create the "Schedule" tab (see below).
 
 ### The sheet
 You need a Spreadsheet with two sheets: One as the data source and one to display the results.
@@ -31,15 +41,13 @@ This will be created automatically if you choose to use Google Forms for your da
 
 The timestamp column will be ignored, it is only there for compatibility with Google Forms. Similarly, the text in the header row does not matter. Just make sure that you have a header row, because the first row will be ignored by the code.
 
-Note: For data protection reasons, I recommend using codes instead of real names as identification.
-
 #### "Schedule"
 
 This is where the result will be printed. The code will again ignore the first row, so feel free to use whatever header you want.
 
 ![image](https://github.com/malfynnction/elternsprechtag/assets/24372341/0021c953-c642-4b55-ba77-361849c95a68)
 
-### The Apps Script
+### Apps Script
 
 Once you have set up both sheets, you can connect to Apps Script. Do this by choosing "Apps Scripts" from the "Extensions" menu:
 
